@@ -84,3 +84,17 @@ p{
 .form-label{
     color: $primary;
 }
+
+.image-card img {
+    height: 200px;
+    object-fit: cover;
+    object-position: 70% 30%;
+}
+
+.img-saumon {
+    height: 350px;           // ou la hauteur que tu veux
+    object-fit: cover;
+    object-position: 70% 30%;    // ou 'center', 'bottom', etc. selon le cadrage souhaité
+    width: 100%;             // pour être sûr que la largeur reste correcte
+    display: block;          // pour éviter les petits bugs d’affichage inline
+}
