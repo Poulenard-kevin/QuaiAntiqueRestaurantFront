@@ -12072,4 +12072,10 @@ p {
   -o-object-position: 70% 30%;
      object-position: 70% 30%;
   display: block;
+}
+
+.allreservations a {
+  display: block;
+  color: #292222;
+  padding: 10px;
 }/*# sourceMappingURL=main.css.map */

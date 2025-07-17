@@ -106,3 +106,11 @@ p{
     object-position: 70% 30%;    // ou 'center', 'bottom', etc. selon le cadrage souhaité 
     display: block;          // pour éviter les petits bugs d’affichage inline
 }
+
+.allreservations{
+    a{
+        display: block;
+        color: $black;
+        padding:10px;
+    }
+}
