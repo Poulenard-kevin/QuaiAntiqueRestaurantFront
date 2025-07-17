@@ -24,25 +24,23 @@ const getRouteByUrl = (url) => {
 // Fonction pour charger le contenu de la page
 const LoadContentPage = async () => {
   const path = window.location.pathname;
-  // Récupération de l'URL actuelle
   const actualRoute = getRouteByUrl(path);
-  // Récupération du contenu HTML de la route
   const html = await fetch(actualRoute.pathHtml).then((data) => data.text());
-  // Ajout du contenu HTML à l'élément avec l'ID "main-page"
   document.getElementById("main-page").innerHTML = html;
+
+  // Code spécifique pour la page réservation
+  if (actualRoute.url === "/reserver") {
+    initReservationForm();
+  }
 
   // Ajout du contenu JavaScript
   if (actualRoute.pathJS != "") {
-    // Création d'une balise script
     var scriptTag = document.createElement("script");
     scriptTag.setAttribute("type", "text/javascript");
     scriptTag.setAttribute("src", actualRoute.pathJS);
-
-    // Ajout de la balise script au corps du document
     document.querySelector("body").appendChild(scriptTag);
   }
 
-  // Changement du titre de la page
   document.title = actualRoute.title + " - " + websiteName;
 };
 
@@ -62,3 +60,34 @@ window.onpopstate = LoadContentPage;
 window.route = routeEvent;
 // Chargement du contenu de la page au chargement initial
 LoadContentPage();
+
+function initReservationForm() {
+  const hoursMidi = ["12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30"];
+  const hoursSoir = ["19:30", "19:45", "20:00", "20:15", "20:30", "20:45", "21:00"];
+
+  function updateHours(service) {
+    const select = document.getElementById('selectHour');
+    if (!select) return;
+    select.innerHTML = "";
+    const hours = service === "midi" ? hoursMidi : hoursSoir;
+    hours.forEach(h => {
+      const option = document.createElement('option');
+      option.value = h;
+      option.textContent = h;
+      select.appendChild(option);
+    });
+  }
+
+  updateHours("soir");
+
+  const midiRadio = document.getElementById('midiRadio');
+  const soirRadio = document.getElementById('soirRadio');
+  if (midiRadio && soirRadio) {
+    midiRadio.addEventListener('change', function() {
+      if (this.checked) updateHours("midi");
+    });
+    soirRadio.addEventListener('change', function() {
+      if (this.checked) updateHours("soir");
+    });
+  }
+}
