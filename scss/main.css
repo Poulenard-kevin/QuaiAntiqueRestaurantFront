@@ -489,7 +489,6 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
-  appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -547,7 +546,6 @@ legend + * {
 
 [type=search] {
   -webkit-appearance: textfield;
-  appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -570,7 +568,6 @@ legend + * {
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
-  appearance: button;
 }
 
 output {
@@ -12032,7 +12029,8 @@ p {
 .image-card {
   position: relative;
 }
-.image-card:hover .titre-image {
+.image-card:hover .titre-image,
+.image-card:hover .action-image-buttons {
   opacity: 1;
 }
 .image-card:hover img {
@@ -12049,25 +12047,29 @@ p {
   opacity: 0;
   transition: all 0.3s;
 }
+.image-card .action-image-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  transition: all 0.3s;
+}
 
 .form-label {
   color: #906427;
 }
 
-.image-card img {
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: 70% 30%;
-     object-position: 70% 30%;
-}
-
+.image-card img,
 .img-saumon {
-  height: 350px;
+  width: 100%;
+  aspect-ratio: 3/2;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 70% 30%;
      object-position: 70% 30%;
-  width: 100%;
   display: block;
 }/*# sourceMappingURL=main.css.map */

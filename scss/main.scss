@@ -58,7 +58,8 @@ p{
 .image-card{
     position:relative;
     &:hover{
-        .titre-image{
+        .titre-image,
+        .action-image-buttons{
             opacity: 1;
         }
         img{
@@ -78,6 +79,18 @@ p{
         opacity: 0;
         transition: all 0.3s;
     }
+
+    .action-image-buttons{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        opacity: 0;
+        transition: all 0.3s;
+    }
 }
 
 
@@ -85,16 +98,11 @@ p{
     color: $primary;
 }
 
-.image-card img {
-    height: 200px;
-    object-fit: cover;
-    object-position: 70% 30%;
-}
-
+.image-card img,
 .img-saumon {
-    height: 350px;           // ou la hauteur que tu veux
+    width: 100%;  
+    aspect-ratio: 3/2;         
     object-fit: cover;
-    object-position: 70% 30%;    // ou 'center', 'bottom', etc. selon le cadrage souhaité
-    width: 100%;             // pour être sûr que la largeur reste correcte
+    object-position: 70% 30%;    // ou 'center', 'bottom', etc. selon le cadrage souhaité 
     display: block;          // pour éviter les petits bugs d’affichage inline
 }
