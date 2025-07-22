@@ -69,6 +69,9 @@ const LoadContentPage = async () => {
   showAndHideElementsForRoles();
 };
 
+// Masquer le loader après l'appel
+document.getElementById('loader').style.display = 'none';
+
   // Fonction pour gérer les événements de routage (clic sur les liens)
 const routeEvent = (event) => {
   event = event || window.event;
