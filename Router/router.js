@@ -89,6 +89,8 @@ window.route = routeEvent;
   // Chargement du contenu de la page au chargement initial
 LoadContentPage();
 
+var titi = "dod";
+
 function initReservationForm() {
   const hoursMidi = ["12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30"];
   const hoursSoir = ["19:30", "19:45", "20:00", "20:15", "20:30", "20:45", "21:00"];
