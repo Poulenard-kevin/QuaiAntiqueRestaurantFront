@@ -1,9 +1,15 @@
 const tokenCookieName = "accesstoken";
 const RoleCookieName = "role";
-const signoutBtn = document.getElementById("signout-btn");
+// eslint-disable-next-line no-unused-vars
 const apiUrl = "http://localhost:8000/api/login";
 
-signoutBtn.addEventListener("click", signout);
+// Initialisation après le chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const signoutBtn = document.getElementById("signout-btn");
+    if (signoutBtn) {
+        signoutBtn.addEventListener("click", signout);
+    }
+});
 
 function getRole(){
     return getCookie(RoleCookieName);
@@ -15,55 +21,41 @@ function signout(){
     window.location.reload();
 }
 
-function setToken(token){
-    setCookie(tokenCookieName, token, 7);
-}
-
 function getToken(){
     return getCookie(tokenCookieName);
 }
 
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
 function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(const element of ca) {
+        let c = element;
+        while (c.startsWith(' ')) c = c.substring(1, c.length);
+        if (c.startsWith(nameEQ)) return c.substring(nameEQ.length, c.length);
     }
     return null;
 }
 
 function eraseCookie(name) {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function isConnected(){
-    if(getToken() == null || getToken == undefined){
-        return false;
-    }
-    else{
-        return true;
-    }
+    const token = getToken();
+    return token !== null && token !== undefined && token !== "";
 }
 
+// eslint-disable-next-line no-unused-vars
 function showAndHideElementsForRoles(){
     const userConnected = isConnected();
     const role = getRole();
 
-    let allElementsToEdit = document.querySelectorAll('[data-show]');
+    const allElementsToEdit = document.querySelectorAll('[data-show]');
 
-    allElementsToEdit.forEach(element =>{
+    allElementsToEdit.forEach(element => {
+        // Réinitialiser la classe d-none avant de l'appliquer
+        element.classList.remove("d-none");
+        
         switch(element.dataset.show){
             case 'disconnected': 
                 if(userConnected){
@@ -76,15 +68,22 @@ function showAndHideElementsForRoles(){
                 }
                 break;
             case 'admin': 
-                if(!userConnected || role != "admin"){
+                if(!userConnected || role !== "admin"){
                     element.classList.add("d-none");
                 }
                 break;
             case 'client': 
-                if(!userConnected || role != "client"){
+                if(!userConnected || role !== "client"){
                     element.classList.add("d-none");
                 }
                 break;
         }
-    })
+    });
+}
+
+// eslint-disable-next-line no-unused-vars
+function sanitizeHtml(text){
+    const tempHtml = document.createElement('div');
+    tempHtml.textContent = text;
+    return tempHtml.innerHTML;
 }

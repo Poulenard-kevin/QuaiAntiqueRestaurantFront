@@ -22,7 +22,7 @@ const getRouteByUrl = (url) => {
 };
 
   // Fonction pour charger le contenu de la page
-const LoadContentPage = async () => {
+  const LoadContentPage = async () => {
   const path = window.location.pathname;
   // Récupération de l'URL actuelle
   const actualRoute = getRouteByUrl(path);
@@ -32,11 +32,13 @@ const LoadContentPage = async () => {
 
   if(allRolesArray.length > 0){
     if(allRolesArray.includes("disconnected")){
+      // eslint-disable-next-line no-undef
       if(isConnected()){
         window.location.replace("/");
       }
     }
     else{
+      // eslint-disable-next-line no-undef
       const roleUser = getRole();
       if(!allRolesArray.includes(roleUser)){
         window.location.replace("/");
@@ -56,7 +58,7 @@ const LoadContentPage = async () => {
 
   // Ajout du contenu JavaScript
   if (actualRoute.pathJS != "") {
-    var scriptTag = document.createElement("script");
+    const scriptTag = document.createElement("script");
     scriptTag.setAttribute("type", "text/javascript");
     scriptTag.setAttribute("src", actualRoute.pathJS);
     document.querySelector("body").appendChild(scriptTag);
@@ -66,6 +68,7 @@ const LoadContentPage = async () => {
   document.title = actualRoute.title + " - " + websiteName;
 
   //Afficher et masquer les éléments en fonction du rôle
+  // eslint-disable-next-line no-undef
   showAndHideElementsForRoles();
 };
 
@@ -88,8 +91,6 @@ window.onpopstate = LoadContentPage;
 window.route = routeEvent;
   // Chargement du contenu de la page au chargement initial
 LoadContentPage();
-
-var titi = "dod";
 
 function initReservationForm() {
   const hoursMidi = ["12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30"];

@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "SonarLint-Visual Studio Code",
+        "projectKey": "Poulenard-kevin_QuaiAntiqueRestaurantFront"
+    }
+}
