@@ -11,13 +11,13 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftp-quaiantiquerestaurant-kp.alwaysdata.net
-        username: quaiantiquerestaurant-kp
-        password: ${{ secrets.ftp_password }}
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/bootstrap/scss/**
-          **/node_modules/bootstrap/js/**
-          **/node_modules/bootstrap-icons/icons/**  
-        server-dir: /www/
+          server: ftps://ftp-quaiantiquerestaurant-kp.alwaysdata.net
+          username: quaiantiquerestaurant-kp
+          password: ${{ secrets.ftp_password }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/bootstrap/scss/**
+            **/node_modules/bootstrap/js/**
+            **/node_modules/bootstrap-icons/icons/**  
+          server-dir: /www/
